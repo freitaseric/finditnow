@@ -4,4 +4,45 @@
     <img alt="GitHub forks" src="https://img.shields.io/github/forks/freitaseric/finditnow">
     <img alt="GitHub License" src="https://img.shields.io/github/license/freitaseric/finditnow">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/freitaseric/finditnow">
-</div>
+</div>.
+
+FindItNow is an open source launcher project created by an independent developer in order to resolve difficulties encountered while using Linux-based operating systems.
+
+> ATTENTION!!
+>
+> **FindItNow is in no way a copy of or attempts to impersonate macOS Spotlight!**
+> This project was created with the intention of bringing to the *open-source* world some of the resources we see in Windows, Linux distributions that use KDE and macOS in a more democratic way.
+
+**IT'S IMPORTANT TO NOTE THAT THIS IS ONLY A PARTIAL VERSION OF THE PROJECT README!**
+
+## Index
+
+1. [Demo images](#screenshots)
+2. [Installation process](#installation)
+3. [How to use?](#usage)
+4. [How to contribute](#contributing)
+5. [Licensing](#license)
+6. [Who contributes?](#contributors)
+
+## Screenshots
+
+> ***Coming soon...***
+
+## Installation
+
+FindItNow will be available for free via Flatpak, Snap, DEB package, RPM package, and through the AUR.
+Until a public beta version is released for testing, you can follow the progress of this project through the commit history.
+
+## Usage
+This application works in a relatively simple way, to activate it the default event is using the keyboard shortcut `Super` + `Space`. Furthermore, you can also activate it through its icon in your system's native tray.
+
+After opening the **FindItNow** window, simply click on the text field and type what you want to search for.
+
+## Contributing
+> This part will be done in the future.
+
+## License
+This repository is under [MIT license](./LICENSE)!
+
+## Contributors
+- [@freitaseric](https://github.com/freitaseric)
