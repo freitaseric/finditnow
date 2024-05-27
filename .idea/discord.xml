@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DiscordProjectSettings">
     <option name="show" value="PROJECT_FILES" />
-    <option name="description" value="" />
+    <option name="description" value="The Spotlight, but for linux." />
     <option name="theme" value="material" />
     <option name="button1Title" value="" />
     <option name="button1Url" value="" />

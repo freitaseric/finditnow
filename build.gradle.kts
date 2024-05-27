@@ -20,6 +20,8 @@ dependencies {
     // (in a separate module for demo project and in testMain).
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
+    implementation("net.java.dev.jna:jna:5.14.0")
+    implementation("com.dorkbox:SystemTray:4.4")
 }
 
 compose.desktop {
@@ -27,7 +29,7 @@ compose.desktop {
         mainClass = "MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb, TargetFormat.AppImage, TargetFormat.Rpm)
             packageName = "FindItNow"
             packageVersion = "1.0.0"
         }
