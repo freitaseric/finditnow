@@ -1,61 +1,57 @@
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import types.Command
-import utils.OS
+import types.Environment
+import types.Path
+import utils.System
+import java.lang.System.getenv
 
-internal interface FindItNowConfig {
-    var appImagesPath: String
+internal interface Configuration {
+    var appImagesPath: Path
     var textEditor: Command
-    var network: NetworkConfiguration
     var shellInterpreter: Command
+    var network: NetworkConfiguration
 }
 
-internal class NetworkConfiguration(
+class NetworkConfiguration(
     var allowedNetworkProtocols: MutableList<String>, var allowedSharingProtocols: MutableList<String>
 )
 
-internal class FindItNowDefaultConfig private constructor(
-    override var appImagesPath: String,
+class FindItNowConfiguration(
+    override var appImagesPath: Path,
     override var textEditor: Command,
+    override var shellInterpreter: Command,
     override var network: NetworkConfiguration,
-    override var shellInterpreter: Command
-) : FindItNowConfig {
-    companion object {
-        fun init(): FindItNowConfig {
-            return FindItNowDefaultConfig(
-                appImagesPath = "\$HOME/.pin/AppImages",
-                textEditor = Command.create("/usr/bin/nvim"),
-                network = NetworkConfiguration(
-                    allowedNetworkProtocols = mutableListOf("https"),
-                    allowedSharingProtocols = mutableListOf("smb", "ftp", "sftp")
-                ),
-                shellInterpreter = this.getDefaultShellInterpreter()
-            )
-        }
+) : Configuration
 
-        private fun getDefaultShellInterpreter(): Command {
-            fun getEnvironmentShell(): String? = when {
-                OS.isWindows() -> System.getenv("ComSpec")
-                else -> System.getenv("SHELL")
-            }
-
-            val environmentShell = getEnvironmentShell()
-
-            return environmentShell?.let { Command.create(it) } ?: when {
-                OS.isWindows() -> Command.create("cmd.exe")
-                else -> Command.create("/bin/sh")
-            }
-        }
-    }
+@Composable
+fun rememberAppConfiguration() = remember {
+    FindItNowConfiguration(
+        appImagesPath = Environment.FIN_APPIMAGES_PATH,
+        textEditor = Environment.FIN_EDITOR ?: getDefaultEditor(),
+        shellInterpreter = Environment.FIN_SHELL ?: getDefaultShell(),
+        network = NetworkConfiguration(
+            allowedSharingProtocols = mutableListOf("smb", "ftp", "sftp"),
+            allowedNetworkProtocols = mutableListOf("https")
+        )
+    )
 }
 
-internal class FindItNowCustomConfig private constructor(
-    override var appImagesPath: String,
-    override var textEditor: Command,
-    override var network: NetworkConfiguration,
-    override var shellInterpreter: Command
-) : FindItNowConfig {
-    companion object {
-        fun init(): FindItNowConfig {
-            return FindItNowDefaultConfig.init()
-        }
+
+private fun getDefaultEditor(): Command {
+    return if (getenv("EDITOR") != null) Command.create(getenv("EDITOR")) else Command.create("nano")
+}
+
+private fun getDefaultShell(): Command {
+    fun getEnvironmentShell(): String? = when {
+        System.isWindows -> getenv("ComSpec")
+        else -> getenv("SHELL")
+    }
+
+    val environmentShell = getEnvironmentShell()
+
+    return environmentShell?.let { Command.create(it) } ?: when {
+        System.isWindows -> Command.create("cmd.exe")
+        else -> Command.create("/bin/sh")
     }
 }

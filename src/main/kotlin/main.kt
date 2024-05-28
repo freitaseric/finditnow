@@ -1,24 +1,10 @@
-import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.painterResource
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.*
-import dorkbox.systemTray.MenuItem
-import dorkbox.systemTray.SystemTray
+import androidx.compose.ui.window.application
+import window.Window
 import java.awt.Toolkit
-
-@Composable
-@Preview
-fun App() {
-    MaterialTheme {
-        Text("Hello World!")
-    }
-}
 
 @Composable
 internal fun getWindowWidth(): Dp {
@@ -27,14 +13,7 @@ internal fun getWindowWidth(): Dp {
 }
 
 fun main() = application {
-    var isVisible by remember { mutableStateOf(true) }
-    val windowState = rememberWindowState(
-        placement = WindowPlacement.Floating,
-        position = WindowPosition(Alignment.Center),
-        size = DpSize(getWindowWidth(), 150.dp),
-    )
-
-    val tray = SystemTray.get()
+/*    val tray = SystemTray.get()
     val resource = this::class.java.classLoader.getResource("icon.png")
 
     tray.setImage(resource)
@@ -53,4 +32,7 @@ fun main() = application {
         App()
         window.isVisible = isVisible
     }
+ */
+
+    Window()
 }
