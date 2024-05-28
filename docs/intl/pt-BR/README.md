@@ -17,8 +17,8 @@ dificuldades encontradas durante sua utilização de sistemas operacionais basea
 
 <br>
 
-[<kbd> <br> 🇧🇷 <br> </kbd>&ensp;&ensp;](README.md)
-[<kbd> <br> 🇺🇸 <br> </kbd>&ensp;&ensp;](../../../README.md)
+[<kbd> <br> 🇧🇷 <br> </kbd>](README.md)&ensp;&ensp;
+[<kbd> <br> 🇺🇸 <br> </kbd>](../../../README.md)
 
 ---
 

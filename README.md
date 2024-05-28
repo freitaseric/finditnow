@@ -17,8 +17,8 @@ encountered while using Linux-based operating systems.
 
 <br>
 
-[<kbd>   <br> 🇧🇷 <br>    </kbd>&ensp;&ensp;](docs/intl/pt-BR/README.md)
-[<kbd>   <br> 🇺🇸 <br>    </kbd>&ensp;&ensp;](README.md)
+[<kbd>   <br> 🇧🇷 <br>    </kbd>](docs/intl/pt-BR/README.md)&ensp;&ensp;
+[<kbd>   <br> 🇺🇸 <br>    </kbd>](README.md)
 
 ---
 
