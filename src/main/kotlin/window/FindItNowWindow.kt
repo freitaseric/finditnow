@@ -1,31 +1,22 @@
 package window
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.window.FrameWindowScope
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 
-class FindItNowWindow(
-    private val state: WindowState = rememberWindowState()
-) {
-    init {
-        Window(
-            onCloseRequest = {},
-            title = "FindItNow",
-            state = state,
-            undecorated = true,
-            resizable = false,
-            alwaysOnTop = true,
-            icon = painterResource("icon.png")
-        ) {
-            Box {
-                Text("Hello World!")
-            }
-        }
-    }
-}
-
 @Composable
-fun Window() = FindItNowWindow()
+fun FindItNowWindow(
+    icon: Painter, state: WindowState = rememberWindowState(), content: @Composable FrameWindowScope.() -> Unit
+) = Window(
+    onCloseRequest = { state.isVisible = !state.isVisible },
+    state = state,
+    content = content,
+    undecorated = true,
+    alwaysOnTop = true,
+    icon = icon,
+    title = "FindItNow",
+    resizable = false,
+    visible = state.isVisible
+)

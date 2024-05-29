@@ -1,38 +1,28 @@
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.application
-import window.Window
+import window.FindItNowWindow
 import java.awt.Toolkit
 
 @Composable
-internal fun getWindowWidth(): Dp {
+internal fun rememberWindowWidth(): Dp {
     val screenSize = Toolkit.getDefaultToolkit().screenSize
     return remember { (screenSize.width * 0.9f).dp }
 }
 
-fun main() = application {
-/*    val tray = SystemTray.get()
-    val resource = this::class.java.classLoader.getResource("icon.png")
-
-    tray.setImage(resource)
-    tray.menu.add(MenuItem("Open") { isVisible = true })
-    tray.menu.add(MenuItem("Exit") { isVisible = false })
-
-    Window(
-        onCloseRequest = { isVisible = false },
-        title = "FindItNow",
-        state = windowState,
-        undecorated = true,
-        resizable = false,
-        alwaysOnTop = true,
-        icon = painterResource("icon.png")
+fun main() = FindItNow {
+    FindItNowWindow(
+        icon = resources.icon.toPainter()
     ) {
-        App()
-        window.isVisible = isVisible
+        MaterialTheme {
+            Box(modifier = Modifier) {
+                Text("Hello World!")
+            }
+        }
     }
- */
-
-    Window()
 }
