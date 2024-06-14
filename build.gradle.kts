@@ -22,6 +22,7 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation("net.java.dev.jna:jna:5.14.0")
     implementation("com.dorkbox:SystemTray:4.4")
+    implementation("org.slf4j:slf4j-simple:2.0.13")
 }
 
 compose.desktop {

@@ -18,5 +18,5 @@ fun rememberWindowState() = androidx.compose.ui.window.rememberWindowState(
 )
 
 inline var WindowState.isVisible: Boolean
-    get() = false
+    get() = true
     set(value) {}

@@ -6,7 +6,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import tray.FindItNowTray
 import window.FindItNowWindow
+import window.rememberWindowState
 import java.awt.Toolkit
 
 @Composable
@@ -16,8 +18,16 @@ internal fun rememberWindowWidth(): Dp {
 }
 
 fun main() = FindItNow {
+    val windowState = rememberWindowState()
+
+    FindItNowTray(
+        icon = resources.trayIcon,
+        windowState
+    )
+
     FindItNowWindow(
-        icon = resources.icon.toPainter()
+        icon = resources.icon.toPainter(),
+        state = windowState
     ) {
         MaterialTheme {
             Box(modifier = Modifier) {
