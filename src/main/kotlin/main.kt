@@ -7,7 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import tray.FindItNowTray
+import utils.isLinux
 import window.FindItNowWindow
+import window.error.ErrorWindow
 import window.rememberWindowState
 import java.awt.Toolkit
 
@@ -18,21 +20,28 @@ internal fun rememberWindowWidth(): Dp {
 }
 
 fun main() = FindItNow {
-    val windowState = rememberWindowState()
+    if (isLinux()) {
+        val windowState = rememberWindowState()
 
-    FindItNowTray(
-        icon = resources.trayIcon,
-        windowState
-    )
+        FindItNowTray(
+            icon = resources.trayIcon, windowState
+        )
 
-    FindItNowWindow(
-        icon = resources.icon.toPainter(),
-        state = windowState
-    ) {
-        MaterialTheme {
-            Box(modifier = Modifier) {
-                Text("Hello World!")
+        FindItNowWindow(
+            icon = resources.icon.toPainter(), state = windowState
+        ) {
+            MaterialTheme {
+                Box(modifier = Modifier) {
+                    Text("Hello World!")
+                }
             }
         }
+    } else {
+        ErrorWindow(
+            onCloseRequest = ::exitApplication,
+            icon = resources.icon.toPainter(),
+            errorCode = 3,
+            errorMessage = "Your operational system is not supported by this application! We just have support for Linux-based systems."
+        )
     }
 }

@@ -3,8 +3,6 @@ import androidx.compose.runtime.remember
 import types.Command
 import types.Environment
 import types.Path
-import utils.System
-import java.lang.System.getenv
 
 internal interface Configuration {
     var appImagesPath: Path
@@ -39,19 +37,13 @@ fun rememberAppConfiguration() = remember {
 
 
 private fun getDefaultEditor(): Command {
-    return if (getenv("EDITOR") != null) Command.create(getenv("EDITOR")) else Command.create("nano")
+    return if (System.getenv("EDITOR") != null) Command.create(System.getenv("EDITOR")) else Command.create("nano")
 }
 
 private fun getDefaultShell(): Command {
-    fun getEnvironmentShell(): String? = when {
-        System.isWindows -> getenv("ComSpec")
-        else -> getenv("SHELL")
-    }
 
-    val environmentShell = getEnvironmentShell()
+    val environmentShell = System.getenv("SHELL")
 
-    return environmentShell?.let { Command.create(it) } ?: when {
-        System.isWindows -> Command.create("cmd.exe")
-        else -> Command.create("/bin/sh")
-    }
+    return environmentShell?.let { Command.create(it) } ?: Command.create("/bin/sh")
+
 }

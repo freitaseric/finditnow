@@ -32,4 +32,4 @@ inline val ApplicationScope.resources: FindItNowResources
     @Composable get() = rememberAppResources()
 
 inline val ApplicationScope.env: Environment
-    get() = Environment
+    @Composable get() = Environment
